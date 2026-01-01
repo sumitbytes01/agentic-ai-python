@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  valkey:
+    image: valkey/valkey:latest      # Use the latest stable version
+    container_name: valkey
+    ports:
+      - "6379:6379"                  # Expose Valkey’s default port
+    volumes:
+      - ./data:/data                 # Persist data to local ./data folder
+    command: valkey-server --save 60 1 --loglevel warning
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

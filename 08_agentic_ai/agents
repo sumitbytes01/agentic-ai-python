@@ -1,0 +1,7 @@
+LLM: dumb piece of code sitting on a server taking text as input and giving text as output
+
+Agent: make llm capable enough to talk to other parts/services(make decisions)
+
+LLM(Brain) + legs + arms etc = Agent
+
+LLM + Tools = Agent

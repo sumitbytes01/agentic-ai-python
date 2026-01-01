@@ -1,0 +1,59 @@
+types of prompting:
+    zero-shot
+    few-shotchain-of-thoughts
+    automate-chain-of-thoughts
+    persona-based
+Prompt styles:
+    Alpaca prompt - Alpaca-style prompting uses an instruction–input–response format
+    ### Instructions: <SYSTEM_PROMPT>\n
+    ## Input: <USER_QUERY>
+    ### Response:\n
+
+CHATML style prompt:
+
+        {"role": "system" | "user" | "assistant(output your are passing back for the next set of tokens)"},
+        {"content": "string"}
+
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": "Hello there, can you tell me a joke?"}
+        
+Alpaca style prompt:
+    ### Instruction:
+        Hello there, can you tell me a joke?
+
+    ### Input:
+        SYSTEM_PROMPT: <insert your system prompt here>
+
+    ### Response:
+
+    OR
+    If you want to inline the system prompt directly (rather than listing it separately), you can combine them more naturally:
+    ### Instruction:
+    <insert SYSTEM_PROMPT here>
+
+    ### Input:
+        User says: Hello there, can you tell me a joke?
+
+    ### Response:
+
+# INST Prompting - often used by models like LLaMA, Alpaca, Vicuna, Mistral-Instruct, etc
+    [INNST] What is the time now? [/INST]
+    <|system|>
+    <SYSTEM_PROMPT>
+    <|user|>
+    <USER_MESSAGE>
+    <|assistant|>
+
+    <|system|>
+    You are a helpful assistant.
+    <|user|>
+    Hello there, can you tell me a joke?
+    <|assistant|>
+
+
+Aspect	                   Chain of Thought	                    ChatML
+Purpose	            Encourage step-by-step reasoning	Structure multi-turn chat messages
+Prompt Style	    Natural language + reasoning cues	Special tokens/tags for message roles
+Example cue	        "Let's think step by step."	        `<
+Use Case	        Problem-solving, math, logic	    Chatbots, structured conversations
+

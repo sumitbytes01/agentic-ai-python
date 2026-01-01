@@ -1,0 +1,55 @@
+RAG
+**Retrieval-Augmented Generation**
+AI framework
+improves the accuracy and relevance of large language model (LLM) responses
+combines information retrieval with text generation
+Instead of relying solely on the model's pre-trained knowledge, RAG fetches relevant information from:
+    external sources (such as databases, documents, or APIs)before generating a response.
+This allows the model to provide 
+    up-to-date, 
+    contextually accurate, and 
+    domain-specific answers 
+without needing to retrain the underlying LLM.
+
+How RAG Works
+
+Retrieval Step: When a user submits a query, RAG uses an information retrieval system to search for relevant documents or data from an external knowledge base. This is often done using embeddings and vector databases to find semantically similar content.​
+
+Augmentation Step: The retrieved information is combined with the original query and fed into the LLM.
+
+Generation Step: The LLM uses both its own knowledge and the retrieved context to generate a more accurate and grounded response.​
+
+Key Benefits
+
+Improved Accuracy: Reduces hallucinations and ensures responses are factually correct by referencing authoritative sources.​
+
+Up-to-Date Information: Allows models to access real-time or domain-specific data, not just static training data.​
+
+Domain Expertise: Enables LLMs to answer questions in specialized fields (e.g., medicine, law, finance) by leveraging external knowledge bases.​
+
+Cost-Effective: Avoids the need to retrain or fine-tune the LLM for every new dataset or domain.​
+
+Common Use Cases
+
+Question-answering systems and chatbots
+
+Content creation and summarization
+
+Conversational agents in enterprise settings
+
+Educational tools and research assistants​
+
+RAG is widely adopted by major tech companies and is considered a best practice for building reliable, context-aware generative AI applications.
+
+https://cdn.hashnode.com/res/hashnode/image/upload/v1724944925051/e525c6cb-6a99-4eec-8b47-3dc827ddff25.png
+
+![alt text](image.png)
+
+indexing phase - provide the data
+retrieval phase - chatting the data
+
+INDEXING (offline)
+Docs → Chunks → Embeddings → Vector DB
+
+RETRIEVAL (online)
+Query → Embedding → Vector DB → Context → LLM → Answer

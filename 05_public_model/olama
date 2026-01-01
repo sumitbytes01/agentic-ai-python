@@ -1,0 +1,14 @@
+you can also install docker image for olama
+
+Install docker container for ollama
+docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+: it will run a container for ollama on a specific port. Now we want to access the Ollama, 
+  for that we need the below tool.
+
+open-webui
+pip install open-webui
+open-webui serve
+  http://localhost:8080
+docs: https://github.com/open-webui/open-webui 
+
+or you can start a container for open-webui as well
