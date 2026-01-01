@@ -1,3 +1,55 @@
+AI, ML, DL, foundation models, and generative AI
+
+Artificial Intelligence:
+    create computers to match or exceed human intelligence, such as learning, inference, and reasoning.
+    Machine Leanring:
+        ML systems learn patterns from data instead of being explicitly programmed: given many examples, they infer rules and make predictions.
+        Deep Learning:
+            Uses multi‑layer neural networks that loosely mimic how the human brain processes information.
+             “deep” because of many stacked layers;
+            Foundation models & large language models (LLMs):
+                Foundation models are large, pre‑trained models that can be adapted to many tasks.
+                A key example is large language models that, given prior text, predict the next sentence, paragraph, or document, similar to an extremely powerful autocomplete.
+            Generative AI:
+            Uses these foundation models to generate new content: text, audio, images, video, and more.
+            Includes chatbots, LLMs, and media models that can create deepfakes (synthetic but realistic voices and videos).
+            Debate exists on whether it is “really” generative; the video uses a music analogy: new songs are new combinations of existing notes, just as Gen AI recombines learned patterns to create novel outputs.
+            Has dramatically accelerated AI adoption, taking it from slow, niche use to widespread deployment across industries.
+​
+           +-----------------------------------------+
+           |        Artificial Intelligence (AI)     |
+           |  Simulate human-like learning/reasoning |
+           +-------------------------+---------------+
+                                     |
+                                     v
+           +-------------------------+---------------+
+           |      Machine Learning (ML)              |
+           |  - Learns patterns from data           |
+           |  - Predictions & anomaly detection     |
+           +-------------------------+---------------+
+                                     |
+                                     v
+           +-------------------------+---------------+
+           |       Deep Learning (DL)                |
+           |  - Multi-layer neural networks          |
+           |  - Basis for many modern advances       |
+           +-------------------------+---------------+
+                                     |
+                                     v
+           +-------------------------+---------------+
+           |       Foundation Models                 |
+           |  - Large pre-trained models             |
+           |  - e.g., Large Language Models (LLMs)   |
+           +-------------------------+---------------+
+                                     |
+                                     v
+           +-------------------------+---------------+
+           |        Generative AI                    |
+           |  - Creates new text, audio, video       |
+           |  - Chatbots, deepfakes, summaries       |
+           +-----------------------------------------+
+
+
 LLM:  
     chatgpt(OpenAI), gemini(Google), claude(Anthropic) LLaMA(META) TITAN(Amazon AWS)
     large language model
@@ -315,7 +367,45 @@ RAG
             prepare context
             prepare system prompt with the context
             call LLM and get the results
-        
+
+Multimodal 
+
+Langgraph
+    python library from langchain ecosystem for building stateful, multi-actor applications with LLMs, enabling cyclical graphs for advanced agent runtimes. 
+    It provides precise control over agent workflows through nodes (actions or functions), edges (connections between nodes), and shared state management.
+    Nodes represent units of work, such as calling an LLM, executing tools, or processing data; add them via graph.add_node("name", function). 
+    Edges define execution flow, including conditional edges for dynamic routing based on state, like graph.add_conditional_edges("node", condition_func, {"end": END, "continue": "next"}). 
+    State is a TypedDict (e.g., with messages: Annotated[list, add_messages]) that persists and updates across graph invocations.
+​
+    pip install -U langgraph
+        Add an entry point with graph.set_entry_point("start")
+        compile via graph.compile()
+        invocation like app.invoke({"messages": [input_msg]})
+
+    checkpoint workflow
+
+    Memory:
+        STM(working memory)
+            an ongoing conversation history
+        LTM
+            stored in DB
+            scoped to a user
+                Factually
+                    facts about user - name, age. something that is allways there in context
+                Episodic
+                    information about previous interactions
+                    remember specific past interactions
+                    on-demand long term memory 
+                Semantic
+                    general knowledge. Delhi is capital on India
+        mem0
+
+Knowledge Graph can be used along with memory to store better relationship
+    vector DB is good but cannot store relationship
+    like if you like one thing, you may like another thing based on the relationship
+        this kind of information can be stored/fetched using knowledge graph
+    cypher queries
+                
 
 
 
