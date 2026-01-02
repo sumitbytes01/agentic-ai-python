@@ -408,4 +408,5 @@ Knowledge Graph can be used along with memory to store better relationship
                 
 
 
-
+Speech to Speech(S2S) - OpenAi
+Chained architecture - all LLMs

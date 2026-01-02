@@ -4,31 +4,26 @@ from mem0 import Memory
 import os
 import json
 
-from google import genai
+from ollama import chat
 from os import getenv
 
 load_dotenv()
 
-api_key=getenv("GOOGLE_API_KEY")
-
-if not api_key:
-    raise RuntimeError("Gemini API key not found")
-
-client = genai.Client(
-    api_key=api_key
-)
+get_neo4j = getenv("NEO_GRAPH_STORE")
+if not get_neo4j:
+    raise RuntimeError("Neo4j Graph Store password not found")
 
 config = {
     "embedder": {
-        "provider": "gemini",
+        "provider": "ollama",
         "config": {
-            "model": "models/text-embedding-004",
+            "model": "nomic-embed-text",
         }
     },
         "llm": {
-        "provider": "gemini",
+        "provider": "ollama",
         "config": {
-            "model": "gemini-2.5-flash",
+            "model": "llama3.1",
             "temperature": 0.0,
             "max_tokens": 1000,
         }
@@ -36,6 +31,14 @@ config = {
     "vector_store": {
         "config": {
             "embedding_model_dims": 768,
+        }
+    },
+    "graph_store":{
+        "provider": "neo4j",
+        "config": {
+            "url": "neo4j+s://1b4d6951.databases.neo4j.io",
+            "username": "neo4j",
+            "password": get_neo4jhe
         }
     }
 }
@@ -47,10 +50,10 @@ while True:
 
     user_query = input("> ")
 
-    search_memory = mem_client.search(query=user_query, user_id="sumit_pareek",)
+    search_memory = mem_client.search(query=user_query, user_id="sumit pareek",)
 
     memories = [
-        f"ID: {mem.get("id")}\nMemory: {mem.get("memory")}" 
+        f"ID: {mem.get('id')}\nMemory: {mem.get('memory')}" 
         for mem in search_memory.get("results")
     ]
 
@@ -61,20 +64,26 @@ while True:
         {json.dumps(memories)}
     """
 
-    response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents=user_query,
-    config={
-        "system_instruction": SYSTEM_PROMPT
-    }
+    response = chat(
+    model='llama3.1',
+    messages=[
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT
+        },
+        {
+            "role": "user",
+            "content": user_query
+        }
+    ]
 )
 
-    ai_response = response.text
+    ai_response = response.message.content
 
     print("AI:", ai_response)
 
     mem_client.add(
-        user_id="sumitpareek",
+        user_id="sumit pareek",
         messages=[
             { "role": "user", "content": user_query },
             { "role": "assistant", "content": ai_response }
