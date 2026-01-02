@@ -410,3 +410,33 @@ Knowledge Graph can be used along with memory to store better relationship
 
 Speech to Speech(S2S) - OpenAi
 Chained architecture - all LLMs
+
+MCP
+    Model Context Protocol
+    MCP = a standard way to give models structured context, tools, and memory.
+    “USB-C for LLMs”
+    MCP standardizes how a model sees the world.
+        without MCP:
+            Prompt string
+            + ad-hoc tool calls
+            + custom memory hacks
+            + provider-specific APIs
+            Problems:
+            Tight coupling to OpenAI/Gemini/Ollama
+            Impossible to reuse tools
+            No standard memory interface
+            Agents break when models change
+    🧩 MCP Core Concepts (must understand)
+        1️⃣ Server
+            A process that exposes capabilities to a model.
+            Example:
+            File system access
+            Database
+            Memory store
+            Git repo
+            Browser
+        2️⃣ Client
+            The LLM runtime (Claude, GPT, etc.) that:
+            discovers servers
+            requests context
+            calls tools
