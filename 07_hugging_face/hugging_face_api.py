@@ -1,34 +1,32 @@
-from huggingface_hub import InferenceClient
 from os import getenv
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
-hf_token = getenv("HF_TOKEN")
+client = OpenAI(
+    base_url="https://router.huggingface.co/v1",
+    api_key=getenv("HF_TOKEN")
+    )
 
-if not hf_token:
-    raise RuntimeError("HF_TOKEN not found in environment variables.")
-
-# Initialize client with your HF token
-client = InferenceClient(
-    model="Qwen/Qwen2-VL-7B-Instruct",
-    token=hf_token
+completion = client.chat.completions.create(
+    model="Qwen/Qwen3-Coder-480B-A35B-Instruct",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Describe this image in one sentence."
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+                    }
+                }
+            ]
+        }
+    ],
 )
 
-# Prepare your prompt and image
-messages = [
-    {
-        "role": "user",
-        "content": [
-            {"type": "image", "image": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
-            {"type": "text", "text": "Describe this image."},
-        ],
-    }
-]
-
-# Send request to the hosted model
-output = client.chat_completion(
-    messages=messages,
-    max_tokens=200
-)
-
-print(output.choices[0].message["content"])
+print(completion.choices[0].message)

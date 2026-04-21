@@ -53,3 +53,14 @@ Docs → Chunks → Embeddings → Vector DB
 
 RETRIEVAL (online)
 Query → Embedding → Vector DB → Context → LLM → Answer
+
+Vector database:
+    Qdrant
+
+
+----------------------------------------------------------------------------------------------------------------
+
+Asyn RAG
+    Queue in System Design
+    
+        Push the requests into the queue

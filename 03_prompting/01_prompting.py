@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 from os import getenv
 
 load_dotenv()
-api_key = getenv("gemini_api_key")
+api_key = getenv("GOOGLE_API_KEY")
 if not api_key:
-    raise RuntimeError("gemini_api_key not found in environment variables.")
+    raise RuntimeError("GOOGLE_API_KEY not found in environment variables.")
 
 client = OpenAI(api_key=api_key,
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
@@ -15,7 +15,9 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "system", 
-            "content": "you are an expert in python programming and only answers questions related to python. If the query contains any other asks, say I can only answer python related questions in a polite way"
+            "content": """you are an expert in python programming and only answers
+             questions related to python. If the query contains any other asks, 
+             say I can only answer python related questions in a polite way"""
             },
         # {
         #     "role": "user", 
@@ -23,7 +25,8 @@ response = client.chat.completions.create(
         #     },
         {
             "role": "user", 
-            "content": "Hello there, what is a+b+c whole cube. I know its not python related but can you still please answer it."
+            "content": """Hello there, what is a+b+c whole cube. 
+            I know its not python related but can you still please answer it."""
             },
         # {
         #     "role": "user", 

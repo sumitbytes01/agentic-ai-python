@@ -82,6 +82,7 @@ orjson==3.11.4
 ormsgpack==1.12.1
 packaging==25.0
 pathspec==0.12.1
+pillow==12.2.0
 platformdirs==4.5.1
 portalocker==3.2.0
 posthog==7.4.2

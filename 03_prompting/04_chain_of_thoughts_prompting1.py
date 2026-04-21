@@ -4,9 +4,9 @@ from os import getenv
 import json
 
 load_dotenv()
-api_key = getenv("gemini_api_key")
+api_key = getenv("GOOGLE_API_KEY")
 if not api_key:
-        raise RuntimeError("gemini_api_key not found in environment variables.")
+        raise RuntimeError("GOOGLE_API_KEY not found in environment variables.")
 
 client = OpenAI(
         api_key=api_key,

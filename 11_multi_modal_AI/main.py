@@ -3,7 +3,7 @@ from openai import OpenAI
 from os import getenv
 
 load_dotenv()
-api_key=getenv("GEMINI_API_KEY")    
+api_key=getenv("GOOGLE_API_KEY")    
 if not api_key:
     raise RuntimeError("Gemini API key not found")
 

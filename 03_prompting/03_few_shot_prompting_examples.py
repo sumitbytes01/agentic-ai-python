@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 from os import getenv
 
 load_dotenv()
-api_key = getenv("gemini_api_key")
+api_key = getenv("GOOGLE_API_KEY")
 if not api_key:
-    raise RuntimeError("gemini_api_key not found in environment variables.")
+    raise RuntimeError("GOOGLE_API_KEY not found in environment variables.")
 
 client = OpenAI(api_key=api_key ,
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/")
@@ -29,7 +29,7 @@ SYSTEM_PROMPT = """ Your name is Alex.
                 Q:Can you tell me the capital of india ?
                 A: {{
                     "code": None,
-                    "isCodingQuestion": alse
+                    "isCodingQuestion": false
                     }}
 
                 Q: Please write a Python program to add two numbers.
@@ -46,7 +46,9 @@ response = client.chat.completions.create(
     messages=[
         {"role": "system", "content": SYSTEM_PROMPT},
         #{"role": "user", "content": "Hello there, can you tell me a joke?"}
-        {"role": "user", "content": "Hello there, can you write a python program to print numbers 1 to 10 in for loop"}
+        {"role": "user", "content": """Hello there, can you write a python program to 
+                                    print numbers 1 to 10 in for loop"""
+        }
         ]
 )
 content = response.choices[0].message.content

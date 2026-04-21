@@ -4,7 +4,7 @@ from os import getenv
 
 load_dotenv()
 
-api_key=getenv("gemini_api_key")
+api_key=getenv("GOOGLE_API_KEY")
 if not api_key:
     raise RuntimeError("Gemini API key not found")
 

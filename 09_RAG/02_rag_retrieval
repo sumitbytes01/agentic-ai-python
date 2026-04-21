@@ -4,13 +4,13 @@ from openai import OpenAI
 
 # load vector embedding
 embedding_model = OllamaEmbeddings(
-    model="nomic-embed-text"
+    model="llama3.1"  # "nomic-embed-text"
 )
 
 # Qdrant vector DB
 vector_db = QdrantVectorStore.from_existing_collection(
     url="localhost:6333",
-    collection_name="learning_rag",
+    collection_name="learning_sd",
     embedding=embedding_model
 )
 
@@ -37,11 +37,13 @@ SYSTEM_PROMPT = f"""
                     {context}
 """
 
-client = OpenAI(api_key="AIzaSyC0Uy7K7SveHqV0vxKwtO0O2kkVVFSxkWA",
-                base_url="https://generativelanguage.googleapis.com/v1beta/openai/") # google api
+# client = OpenAI(api_key="AIzaSyC0Uy7K7SveHqV0vxKwtO0O2kkVVFSxkWA",
+#                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/") # google api
+
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="") 
 
 response = client.chat.completions.create(
-    model="gemini-2.5-flash",
+    model="llama3.1",
     messages=[
     {   "role": "system",
         "content": SYSTEM_PROMPT

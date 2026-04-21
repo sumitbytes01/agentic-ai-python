@@ -9,7 +9,7 @@ import os
 
 load_dotenv()
 
-client = OpenAI(api_key="")
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="") 
 
 def run_command(cmd: str):
     result = os.system(cmd)
@@ -33,16 +33,17 @@ available_tools = {
 
 SYSTEM_PROMPT = """
     You're an expert AI Assistant in resolving user queries using chain of thought.
-    You work on START, PLAN and OUTPUT steps.
+    You work on START, PLAN, TOOL and OUTPUT steps.
     You need to first PLAN what needs to be done. The PLAN can be multiple steps.
-    Once you think enough PLAN has been done, finally you can give an OUTPUT.
     You can also call a tool if required from the list of available tools.
     for every tool call wait for the OBSERVE step which is the output from the called tool.
+    Once you think enough PLAN has been done, finally you can give an OUTPUT.
+    
 
     Rules:
     - Strictly Follow the given JSON output format
     - Only run one step at a time.
-    - The sequence of steps is START (where user gives an input), PLAN (That can be multiple times) and finally OUTPUT (which is going to the displayed to the user).
+    - The sequence of steps is START (where user gives an input), PLAN (That can be multiple times) , TOOL, and finally OUTPUT (which is going to the displayed to the user).
 
     Output JSON Format:
     { "step": "START" | "PLAN" | "OUTPUT" | "TOOL", "content": "string", "tool": "string", "input": "string" }
@@ -95,7 +96,7 @@ while True:
 
     while True:
         response = client.chat.completions.parse(
-            model="gpt-4o",
+            model="llama3.1",
             response_format=MyOutputFormat,
             messages=message_history
         )

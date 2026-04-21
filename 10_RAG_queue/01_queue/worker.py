@@ -10,7 +10,7 @@ embedding_model = OllamaEmbeddings(
 # Qdrant vector DB
 vector_db = QdrantVectorStore.from_existing_collection(
     url="localhost:6333",
-    collection_name="learning_rag",
+    collection_name="learning_sd",
     embedding=embedding_model
 )
 

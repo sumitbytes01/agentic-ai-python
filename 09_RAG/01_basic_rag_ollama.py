@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # load pdf
-pdf_path = Path("/Users/sumit-macbookair/Study/ebooks/SystemDesign.pdf")
+pdf_path = Path("/Users/sumit-macbookair/Study/ebooks/sd.pdf")
 
 loader = PyPDFLoader(file_path=pdf_path)
 docs = loader.load()
@@ -30,7 +30,7 @@ chunks = text_splitter.split_documents(
 
 # Use your local Ollama embeddings model name here
 embedding_model = OllamaEmbeddings(
-    model="nomic-embed-text",   # or "mxbai-embed-large"
+    model= "llama3.1", #"nomic-embed-text",   # or "mxbai-embed-large"
     base_url="http://localhost:11434"
 )
 
@@ -38,7 +38,7 @@ vector_store = QdrantVectorStore.from_documents(
     documents=chunks, 
     embedding=embedding_model,
     url="http://localhost:6333",
-    collection_name = "learning_rag",
+    collection_name = "learning_sd",
     force_recreate=True
 )
 

@@ -1,0 +1,1 @@
+AI system that process and integrate information from multiple data types and modalities such as text, iages, audio, video etc.

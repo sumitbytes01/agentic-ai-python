@@ -69,7 +69,7 @@ LLM:
 
 How LLM works:
 GPT: Generative(in Nature) Pretrainined(generate content based on pretrained data) Transformer
-How goodle search works: indexing
+How google search works: indexing
 Input token -> LLM -> Output token
 
 Transformers: generative in nature and work on pretrained models
@@ -98,12 +98,21 @@ Detokenization -> return to user ABCDE
 Tokens: Transformers map the human written text to numbers known as tokens
 Token generation system is different for all models
 
-toktokenizer
+tiktokenizer
 
 create virtual environment
-    python3 -m venv venv
+    python3 -m venv myvenv (-m = runs a module as script) (venv = built-in module to create virtual environments)
+                            (myenv = mane of folder to manage the environment)
+            👉 This includes:
+                    A separate Python interpreter
+                    Its own pip (package manager)
+                    Isolated site-packages
+            All packages install globally → version conflicts ❌
+            Each project has its own dependencies ✅
     source venv/bin/activate
     pip install tiktoken
+        This installs only inside your myvenv, not globally.
+
 
 
 Attention is all you need: Whitepaper
@@ -113,7 +122,7 @@ Attention is all you need: Whitepaper
 
  Input(Hey there how are you)
 
- ML - Machine Learning -> develop foundational models - research work
+ ML -   research work
  Application developers -> solving business needs -> no need to for mathematics formulas
 
 Input Embedding - Vector Embeddings - 
@@ -127,8 +136,8 @@ Input Embedding - Vector Embeddings -
 Positional Encoding
     Dog ate cat 
     cat ate dog
-        they are going to have same vector embeddings. but the menaing is alltogether different.
-        vector encoding cannot differentiate between them
+        they are going to have same vector embeddings. but the meaning is alltogether different.
+        vector embeddings cannot differentiate between them
     Dog Ate Cat 
     step1 
         tokenization -> Dog Ate Cat
@@ -176,7 +185,8 @@ Prompting
     persona based prompting
 types of prompting:
     zero-shot
-    few-shotchain-of-thoughts
+    few-shotchain
+    chain-of-thoughts
     automate-chain-of-thoughts
     persona-based
 
@@ -234,7 +244,7 @@ Prompt Style	    Natural language + reasoning cues	Special tokens/tags for messa
 Example cue	        "Let's think step by step."	        `<
 Use Case	        Problem-solving, math, logic	    Chatbots, structured conversations
 
-OLLAMA₹
+OLLAMA
     you can also install docker image for olama
 
     Install docker container for ollama
@@ -252,9 +262,21 @@ OLLAMA₹
 
 Hugging Face
     hugging face is GITHUB of LLM models
+        you cannot push models to github
+            Models
+            Spaces -  for runing the models for testing/benchmarking
+            Datasets
+            Gated models
+            Hugglingface cli
+            generate token on your huggingface account
+            Transformer package huggingface
+                Transformer -> pipeline
     pip install -U "huggingface_hub"
     huggingface-cli login
     pip install transformers
+        Use transformers and pipeline code to doenload the huggingface midel and then use it for your queries
+        Another way can be using tokens using hugging face api - using huggingface_hub InferenceClient
+            InterfaceClient - Model + Token
 
     instead of using local machine, we can use the hugging face to run the models too.
 
@@ -281,7 +303,7 @@ Agentic AI
     LLM + Tools = Agent
 
     creating an agentic ai use Case:
-        creating multiple tools like weather app, some os comands for creating files, folders app etc
+        creating multiple tools like weather app, some os commands for creating files, folders app etc
         making them available in available_tools 
         creating SYSTEM_PROMPT:
             rules

@@ -9,6 +9,7 @@ app = FastAPI()
 @app.post("/color-check")
 def color_check(message: str = Body(..., description="why is the sky blue")):
     # Send the user's message to the ollama `chat` call
+    print(message)
     response = chat(
             model='llama3.1', 
             messages=[
